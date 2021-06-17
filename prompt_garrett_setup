@@ -77,48 +77,48 @@ zmodload -i zsh/datetime
 # }
 
 # Notify of command completion after n seconds has passed.
-function prompt_garrett_precmd_notification {
-
-  # n seconds have passed, so notify!
-  if [[ -n $prompt_garrett_cmd_exec_time ]]; then
-
-    # Notify via tput while on ssh.
-    if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
-      tput bel
-
-    # Use local notifications.
-    else
-      local message="Took $prompt_garrett_cmd_exec_time"
-
-      # On macOS, notify with terminal-notifier.
-      if [[ "$OSTYPE" == darwin* ]] && (( $+commands[terminal-notifier] )); then
-
-        # Wrap with reattach-to-usernamespace to allow to work in TMUX.
-        if (( $+commands[reattach-to-user-namespace] )); then
-          reattach-to-user-namespace -l terminal-notifier \
-            -title "${prompt_garrett_preexec_cmd}" \
-            -message "${message}" \
-            -sound Tink
-        else
-          terminal-notifier \
-            -title "${prompt_garrett_preexec_cmd}" \
-            -message "${message}" \
-            -sound Tink
-        fi
-
-      # On linux, notify with notify-send.
-      elif [[ "$OSTYPE" == linux-gnu ]] && (( $+commands[notify-send] )); then
-        notify-send \
-          "${prompt_garrett_preexec_cmd}" \
-          "${message}"
-
-      # Notify via tput.
-      else
-        tput bel
-      fi
-    fi
-  fi
-}
+# function prompt_garrett_precmd_notification {
+# 
+#   # n seconds have passed, so notify!
+#   if [[ -n $prompt_garrett_cmd_exec_time ]]; then
+# 
+#     # Notify via tput while on ssh.
+#     if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
+#       tput bel
+# 
+#     # Use local notifications.
+#     else
+#       local message="Took $prompt_garrett_cmd_exec_time"
+# 
+#       # On macOS, notify with terminal-notifier.
+#       if [[ "$OSTYPE" == darwin* ]] && (( $+commands[terminal-notifier] )); then
+# 
+#         # Wrap with reattach-to-usernamespace to allow to work in TMUX.
+#         if (( $+commands[reattach-to-user-namespace] )); then
+#           reattach-to-user-namespace -l terminal-notifier \
+#             -title "${prompt_garrett_preexec_cmd}" \
+#             -message "${message}" \
+#             -sound Tink
+#         else
+#           terminal-notifier \
+#             -title "${prompt_garrett_preexec_cmd}" \
+#             -message "${message}" \
+#             -sound Tink
+#         fi
+# 
+#       # On linux, notify with notify-send.
+#       elif [[ "$OSTYPE" == linux-gnu ]] && (( $+commands[notify-send] )); then
+#         notify-send \
+#           "${prompt_garrett_preexec_cmd}" \
+#           "${message}"
+# 
+#       # Notify via tput.
+#       else
+#         tput bel
+#       fi
+#     fi
+#   fi
+# }
 
 # Handle clearing the screen with ^L.
 function prompt_garrett_clear_screen() {
@@ -213,7 +213,7 @@ function prompt_garrett_precmd {
 	unset prompt_garrett_cmd_timestamp
 
   # Trigger a notification after x time has elapsed.
-  prompt_garrett_precmd_notification
+  # prompt_garrett_precmd_notification
 
   # Get Git repository info.
   if (( $+functions[git-info] )); then
@@ -277,7 +277,7 @@ function prompt_garrett_setup {
   #
 
   # Color scheme.
-  prompt_garrett_color_pwd=${2:-'%F{blue}'}
+  prompt_garrett_color_pwd=${2:-'%F{lightblue}'}
   # prompt_garrett_color_line_number=${5:-'%F{magenta}'}
   # prompt_garrett_color_time=${6:-'%F{green}'}
   # prompt_garrett_color_git_branch=${7:-'%F{green}'}
