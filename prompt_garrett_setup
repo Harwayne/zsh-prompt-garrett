@@ -203,7 +203,7 @@ function prompt_garrett_precmd {
   unsetopt XTRACE KSH_ARRAYS
 
   # Show number of background jobs.
-  prompt_garrett_number_jobs="%(1j.${prompt_garrett_color_prompt}J:%F{cyan}%j .)"
+  prompt_garrett_number_jobs="%(1j.${prompt_garrett_color_prompt}Background Jobs:%F{cyan}%j .)${prompt_garrett_color_prompt}"
 
   # Format PWD.
   prompt_garrett_pwd="${prompt_garrett_color_pwd}$(prompt-pwd)"
@@ -467,10 +467,10 @@ function prompt_garrett_setup {
   #
 
   # Left prompt
-  export PROMPT='${prompt_garrett_altchar_enable}${prompt_garrett_color_prompt}${prompt_garrett_return_code}${prompt_garrett_lower_left_corner}${editor_info[keymap]}%F{none} '
+  export PROMPT='${prompt_garrett_altchar_enable}${prompt_garrett_color_prompt}${prompt_garrett_return_code}${prompt_garrett_number_jobs}${prompt_garrett_lower_left_corner}${editor_info[keymap]}%F{none} '
 
   # Right prompt.
-  export RPROMPT='${prompt_garrett_color_prompt}${prompt_garrett_number_jobs} ${editor_info[alternate]}${editor_info[insert]}${prompt_garrett_color_prompt}%F{none}'
+  export RPROMPT='${prompt_garrett_color_prompt}${editor_info[alternate]}${editor_info[insert]}${prompt_garrett_color_prompt}%F{none}'
 
   # Continuation prompt.
   export PROMPT2='(%_) ${editor_info[keymap]}%F{none}'
