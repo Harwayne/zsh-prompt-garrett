@@ -231,7 +231,9 @@ function prompt_garrett_preprompt_render() {
   #
 
   # 24 hour time format
-  prompt_garrett_current_time="%F{green}$(date '+%H:%M')"
+  prompt_garrett_utc_time="$(TZ=UTC date '+%H:%M')"
+  prompt_garrett_pacific_time="$(TZ=America/Los_Angeles date '+%H:%M')"
+  prompt_garrett_current_time="%F{green}Pacific ${prompt_garrett_pacific_time} :: UTC ${prompt_garrett_utc_time}"
 
   # Determine the width.
   local prompt_garrett_width_terminal
