@@ -462,18 +462,15 @@ function prompt_garrett_setup {
   # Upper right corner: ┐
   prompt_garrett_upper_right_corner=${prompt_garrett_altchar_enter}${altchar[q]:--}${altchar[k]:--}${prompt_garrett_altchar_leave}
 
-  # Upper right corner: ┘
-  prompt_garrett_lower_right_corner=${prompt_garrett_altchar_enter}${altchar[q]:--}${altchar[j]:--}${prompt_garrett_altchar_leave}
-
   #
   # Print out the prompt.
   #
 
   # Left prompt
-  export PROMPT='${prompt_garrett_altchar_enable}${prompt_garrett_color_prompt}${prompt_garrett_lower_left_corner}${editor_info[keymap]}%F{none} '
+  export PROMPT='${prompt_garrett_altchar_enable}${prompt_garrett_color_prompt}${prompt_garrett_return_code}${prompt_garrett_lower_left_corner}${editor_info[keymap]}%F{none} '
 
   # Right prompt.
-  export RPROMPT='${prompt_garrett_color_prompt}${prompt_garrett_return_code}${prompt_garrett_number_jobs} ${editor_info[alternate]}${editor_info[insert]}${prompt_garrett_color_prompt}${prompt_garrett_lower_right_corner}%F{none}'
+  export RPROMPT='${prompt_garrett_color_prompt}${prompt_garrett_number_jobs} ${editor_info[alternate]}${editor_info[insert]}${prompt_garrett_color_prompt}%F{none}'
 
   # Continuation prompt.
   export PROMPT2='(%_) ${editor_info[keymap]}%F{none}'
